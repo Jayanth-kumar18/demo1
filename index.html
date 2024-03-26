@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    #todo-list {
+      list-style-type: none;
+      padding: 0;
+    }
+    .todo-item {
+      margin-bottom: 5px;
+    }
+    .delete-btn {
+      cursor: pointer;
+      color: red;
+      margin-left: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>To-Do List</h1>
+  <input type="text" id="todo-input" placeholder="Add new todo">
+  <button onclick="addTodo()">Add</button>
+  <ul id="todo-list"></ul>
+
+  <script>
+    // Function to add a new todo item
+    function addTodo() {
+      var todoInput = document.getElementById("todo-input");
+      var todoText = todoInput.value.trim();
+      
+      if (todoText !== "") {
+        var todoList = document.getElementById("todo-list");
+        var todoItem = document.createElement("li");
+        todoItem.classList.add("todo-item");
+        todoItem.textContent = todoText;
+        
+        var deleteBtn = document.createElement("span");
+        deleteBtn.classList.add("delete-btn");
+        deleteBtn.textContent = "❌";
+        deleteBtn.onclick = function() {
+          todoItem.remove();
+        };
+        
+        todoItem.appendChild(deleteBtn);
+        todoList.appendChild(todoItem);
+        
+        todoInput.value = ""; // Clear input field after adding
+      }
+    }
+  </script>
+</body>
+</html>
